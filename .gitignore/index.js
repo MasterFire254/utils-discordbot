@@ -34,7 +34,10 @@ bot.on('message', message =>{
         const args = message.content.slice(prefix.length).split(/ +/);
         command = args.shift().toLowerCase();
 
-        if(command === prefix + "kick"){
+
+    }
+        
+    if(command === prefix + "kick"){
             let modRole = message.guild.roles.find("name", "Fondateur");
             if(!message.member.roles.has(modRole.id)){
                 return message.reply("Tu n'as pas la permission pour cette commande.").catch(console.error);
@@ -53,15 +56,13 @@ bot.on('message', message =>{
                 return message.reply("Je n'ai pas la permission de kick.")
             }
 
-            kickMember.kick().then(member =>{
-                message.reply(`${member.use.username} a bien été kick.`).catch(console.error);
-                message.guild.channels.find("name", "general").send(`**${member.user.username} a été kick par **${message.author.username}**.`);
-            }).catch(console.error)
+        kickMember.kick().then(member =>{
+        message.reply(`${member.user.username} a bien été kick.`).catch(console.error);
+        message.guild.channels.find("name", "general").send(`**${member.user.username} a été kick par **${message.author.username}**.`);
+        }).catch(console.error)
         
 
-        }
     }
-
 });
 
 
