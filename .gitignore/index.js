@@ -3,13 +3,11 @@ const bot = new discord.Client();
 
 var prefix = (".")
 var secondaryPrefix = ("?")
-var game = (".help")
 
 
 bot.on('ready', function(){
     
     console.log(`Connecté avec ${bot.user.tag} (${bot.user.id}) sur ${bot.guilds.size} serveurs`);
-    bot.user.setGame(game);
 });
 
 bot.on('message', msg =>{;
