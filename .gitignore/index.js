@@ -43,7 +43,7 @@ bot.on('message', msg =>{;
         if(!msg.member.permissions.has('KICK_MEMBERS')) return msg.reply("Tu n'as pas les permissions nécéssaires.");
         const member = msg.mentions.members.first();
         if(!member) return msg.reply("Mauvais usage fait comme ça : `.kick @User#1234`");
-        member.kick();
+        msg.mentions.members.tag.kick();
 
     }
 
@@ -52,7 +52,7 @@ bot.on('message', msg =>{;
         if(!msg.member.permissions.has("BAN_MEMBERS")) return msg.reply("Tu n'as pas les permissions nécéssaires.");
         const member = msg.mentions.members.first();
         if(!member) return msg.reply("Mauvais usage fait comme ça : `.ban @User#1234`");
-        member.ban();
+        msg.mentions.members.tag.ban();
 
     }
 
