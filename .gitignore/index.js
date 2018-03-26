@@ -44,7 +44,9 @@ bot.on('message', msg =>{;
         const member = msg.mentions.members.first();
         if(!member) return msg.reply("Mauvais usage fait comme ça : `.kick @User#1234`");
         if(member && msg.member.permissions.has("KICK_MEMBERS")){
-            member.kick();
+            member.kick({
+                reason: `kicker par ${msg.author.tag}`
+            });
         }
 
     }
@@ -55,7 +57,9 @@ bot.on('message', msg =>{;
         const member = msg.mentions.members.first();
         if(!member) return msg.reply("Mauvais usage fait comme ça : `.ban @User#1234`");
          if(member && msg.member.permissions.has("BAN_MEMBERS")){
-             member.ban();
+             member.ban({
+                 reason: `banni par ${msg.author.tag}`
+             });
          }
 
     }
