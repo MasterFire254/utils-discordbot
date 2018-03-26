@@ -18,7 +18,7 @@ bot.on('message', msg =>{;
         msg.channel.sendmsg("C'est Benedict ");
     };
 
-    if(msg.content === "help"){
+    if(msg.content === prefix + "help"){
 
         //commande help
         var embed = new discord.RichEmbed()
@@ -31,32 +31,19 @@ bot.on('message', msg =>{;
 
     };
 
-    //commande kick    
-    if(msg.content === "kick"){
-
-            const member = msg.mentions.members.first();
-
-            if(!msg.member.permissions.has('KICK_MEMBERS')){
-                return msg.reply("Tu n'as pas la permission pour cette commande.");
-            };
-
-            if(msg.mentions.users.size === 0){
-                return msg.reply("Merci de mentionner l'utilisateur è kicker.");
-            };
-
-            if(!member){
-                return msg.reply("Cet utilisateur est introuvable ou impossible à kicker.");
-            };
-            
-        
-
-    };
 
     if(msg.content === prefix + "ping"){
         const then = Date.now();
         msg.channel.send('Pinging...').then(m =>{
             m.edit(`Pong! Ca a pris  ${Date.now() - then}ms pour envoyer ce msg\nDiscord bot : ${bot.ping}ms`);
         });
+    }
+
+    if(msg.content === prefix + "kick"){
+        if(!msg.member.permissions.has('KICK_MEMBERS')) return msg.reply("Tu n'as pas les permissions nécéssaires.");
+        const member = msg.mentions.members.first();
+        if(!member) return msg.reply("Mauvais usage fait comme ça : `.kick @User#1234`");
+        
     }
 
 });
