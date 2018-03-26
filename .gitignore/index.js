@@ -11,8 +11,7 @@ bot.on('ready', function(){
     console.log("Connected");
 });
 
-bot.on('message', function(message){
-
+bot.on('message', message =>{
 
     if(message.content === secondaryPrefix + "bg"){
         message.channel.sendMessage("C'est Benedict ");
