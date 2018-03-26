@@ -8,17 +8,19 @@ var game = (".help")
 
 bot.on('ready', function(){
     
-    console.log("Connected");
+    console.log(`Connecté avec ${bot.user.tag} (${bot.user.id}) sur ${bot.guilds.size} `);
     bot.user.setGame(game);
 });
 
 bot.on('message', message =>{
+    const args = message.content.slice(prefix.length).split(/ +/);
+    const command = args.shift().toLowerCase();
 
-    if(message.content === "?bg"){
+    if(message.content === secondaryPrefix + "bg"){
         message.channel.sendMessage("C'est Benedict ");
     };
 
-    if(message.content === ".help"){
+    if(command === "help"){
 
         //commande help
         var embed = new discord.RichEmbed()
@@ -30,15 +32,13 @@ bot.on('message', message =>{
             message.channel.sendEmbed(embed);
 
     };
-    //commande kick    
-    if(message.content === ".kick"){
 
-        let command = message.content.slipt(" ")[0];
-        const args = message.content.slice(prefix.length).split(/ +/);
-        command = args.shift().toLowerCase();
-        
-            let modRole = message.guild.roles.find("name", "Fondateur");
-            if(!message.member.roles.has(modRole.id)){
+    //commande kick    
+    if(command === "kick"){
+
+            const member = message.mentions.members.first();
+
+            if(!message.member.permissions.has('KICK_MEMBERS')){
                 return message.reply("Tu n'as pas la permission pour cette commande.");
             };
 
@@ -62,7 +62,14 @@ bot.on('message', message =>{
         
 
     };
-});
 
+    if(message.content === prefix + "ping"){
+        const then = Date.now();
+        message.channel.send('Pinging...').then(m =>{
+            m.edit(`Pong! Ca a pris  ${Date.now() - then}ms pour envoyer ce message\nDiscord bot : ${bot.ping}ms`);
+        });
+    }
+
+});
 
 bot.login(process.env.TOKEN);
