@@ -1,5 +1,5 @@
-const d = require('discord.js');
-const bot = new Discord.Client();
+const discord = require('discord.js');
+const bot = new discord.Client();
 
 var prefix = (".");
 var secondaryPrefix = ("?")
@@ -19,7 +19,7 @@ bot.on('message', message =>{
     };
 
     if(message.content === prefix + "help"){
-        var embed = new Discord.RichEmbed()
+        var embed = new discord.RichEmbed()
             .setTitle("Page d'aide")
             .addField(".ban [pseudo] ","Permet de ban des joueurs")
             .addBlankField()
@@ -29,5 +29,6 @@ bot.on('message', message =>{
     }
 
 });
+
 
 bot.login(process.env.TOKEN);
