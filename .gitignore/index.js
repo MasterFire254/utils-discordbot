@@ -15,7 +15,7 @@ bot.on('ready', function(){
 bot.on('message', msg =>{;
 
     if(msg.content === secondaryPrefix + "bg"){
-        msg.channel.sendmsg("C'est Benedict ");
+        msg.channel.sendMessage("C'est Benedict ");
     };
 
     if(msg.content === prefix + "help"){
@@ -31,19 +31,33 @@ bot.on('message', msg =>{;
 
     };
 
-
+    //PING
     if(msg.content === prefix + "ping"){
         const then = Date.now();
         msg.channel.send('Pinging...').then(m =>{
-            m.edit(`Pong! Ca a pris  ${Date.now() - then}ms pour envoyer ce msg\nDiscord bot : ${bot.ping}ms`);
+            m.edit(`Pong! Ca a pris  ${Date.now() - then}ms pour envoyer ce msg\nPing du bot : ${bot.ping}ms`);
         });
     }
-
+    //KICK
     if(msg.content === prefix + "kick"){
         if(!msg.member.permissions.has('KICK_MEMBERS')) return msg.reply("Tu n'as pas les permissions nécéssaires.");
         const member = msg.mentions.members.first();
         if(!member) return msg.reply("Mauvais usage fait comme ça : `.kick @User#1234`");
-        
+        member.kick({
+            reason: `Kicker par ${msg.author.tag}`
+        });
+
+    }
+
+    //BAN
+    if(msg.content === prefix + "ban"){
+        if(!msg.member.permissions.has("BAN_MEMBERS")) return msg.reply("Tu n'as pas les permissions nécéssaires.");
+        const member = msg.mentions.members.first();
+        if(!member) return msg.reply("Mauvais usage fait comme ça : `.ban @User#1234`");
+        member.ban({
+            reason: `Banni par ${msg.author.tag}`
+        });
+
     }
 
 });
