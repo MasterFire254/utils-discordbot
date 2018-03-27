@@ -1,5 +1,6 @@
 const discord = require('discord.js');
 const YTDL = require('ytdl-core');
+var opusscript = require("opusscript");
 const bot = new discord.Client();
 
 var prefix = (".")
