@@ -105,7 +105,7 @@ bot.on('message', message =>{;
             return;
         }
 
-        var server = server[message.guild.id]= {
+        var server = servers[message.guild.id] = {
             queue: []
         };
 
@@ -119,12 +119,12 @@ bot.on('message', message =>{;
 
     }
 
-    if(message.content === prefix + 'skip'){
+    if(message.content === 'skip'){
         var server = servers[message.guil.id];
         if(server.dispatcher) server.dispatcher.end();
     }
 
-    if(message.content === prefix + "stop"){
+    if(message.content === "stop"){
         var server = servers[message.guil.id];
         if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
     }
