@@ -124,7 +124,7 @@ bot.on('message', message =>{;
         if(server.dispatcher) server.dispatcher.end();
     }
 
-    if(message.content === stop){
+    if(message.content === "stop"){
         var server = servers[message.guil.id];
         if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
     }
