@@ -38,7 +38,7 @@ bot.on('message', msg =>{;
         });
     }
     //KICK
-    if(msg.content === prefix + "kick"){
+    if(msg.content.startsWith(prefix + "kick")){
         if(!msg.member.permissions.has('KICK_MEMBERS')) return msg.reply("Tu n'as pas les permissions nécéssaires.");
         const member = msg.mentions.members.first();
         if(!member) return msg.reply("Mauvais usage fait comme ça : `.kick @User#1234`");
@@ -48,7 +48,7 @@ bot.on('message', msg =>{;
     }
 
     //BAN
-    if(msg.content === prefix + "ban"){
+    if(msg.content.startsWith(prefix + "ban")){
         if(!msg.member.permissions.has("BAN_MEMBERS")) return msg.reply("Tu n'as pas les permissions nécéssaires.");
         const member = msg.mentions.members.first();
         if(!member) return msg.reply("Mauvais usage fait comme ça : `.ban @User#1234`");
