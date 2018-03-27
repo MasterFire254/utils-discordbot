@@ -119,12 +119,12 @@ bot.on('message', message =>{;
 
     }
 
-    if(message.content === 'skip'){
+    if(message.content === prefix + 'skip'){
         var server = servers[message.guil.id];
         if(server.dispatcher) server.dispatcher.end();
     }
 
-    if(message.content === "stop"){
+    if(message.content === prefix + "stop"){
         var server = servers[message.guil.id];
         if(message.guild.voiceConnection) message.guild.voiceConnection.disconnect();
     }
