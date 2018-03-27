@@ -25,6 +25,7 @@ bot.on('message', msg =>{;
             .addField(".kick [@pseudo]", "Permet de kick des joueurs")
             .addField(".changecolor [@role]","Permet de changer la couleur d'un role")
             .addField(".helpmusic","Permet de voir les commandes pour les musics")
+            .setColor(255, 0, 0)
             msg.channel.sendEmbed(embed);
 
     };
@@ -58,6 +59,18 @@ bot.on('message', msg =>{;
          }
 
     }
+
+    //MUSIC
+    if(msg.content === prefix + "helpmusic"){
+        var embed = new discord.RichEmbed()
+            .setTitle("Help Music")
+            .addField(".play [link]", "Permet de jouer une music a partir d'un lien youtube.")
+            .addField(".stop", "Permet de stopper la music.")
+            .addField(".skip","Permet de passer à la music suivante.")
+            .setColor(0, 255, 0)
+            msg.channel.sendEmbed(embed);
+    }
+
 
 });
 
