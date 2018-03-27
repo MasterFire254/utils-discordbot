@@ -41,11 +41,10 @@ bot.on('message', msg =>{;
         if(!msg.member.permissions.has('KICK_MEMBERS')) return msg.reply("Tu n'as pas les permissions nécéssaires.");
         const member = msg.mentions.members.first();
         if(!member) return msg.reply("Mauvais usage fait comme ça : `.kick @User#1234`");
-        if(member && msg.member.permissions.has("KICK_MEMBERS")){
-            member.kick({
-                reason: `kicker par ${msg.author.tag}`
-            });
-        }
+        member.kick()
+        .then(() => console.log(`Kicked ${member.displayName}`))
+        .catch(console.error);
+        
 
     }
 
